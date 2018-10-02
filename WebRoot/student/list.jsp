@@ -10,28 +10,32 @@
 </head>
 <body>
     <div class="main">
-        <h2 class="title"><span>学生管理</span></h2>
+        <h2 class="title"><span>会员管理</span></h2>
         <form action="<c:url value="/stu/deletes?pageNO=${pageNO}"/>" method="post">
-        <table border="1" width="100%" class="tab">
+        <table border="1" width="100%" class="tab" >
             <tr>
                 <th><input type="checkbox" id="chbAll"></th>
-                <th>学生编号</th>
-                <th>学生姓名</th>
+                <th>会员编号</th>
+                <th>会员姓名</th>
                 <th>电话</th>
-                <th>地址</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>身份证</th>
                <!--  <th>所在班级</th> -->
                 <th>操作</th>
             </tr>
             <c:forEach var="entity" items="${slist}" varStatus="status">
-                <tr>
+                <tr align="center">
                     <th><input type="checkbox" name="id" value="${entity.id}"></th>
                     <td>${entity.id}</td>
                     <td>${entity.name}</td>
                     <td>${entity.tel}</td>
-                    <td>${entity.address}</td>
+                    <td>${entity.sex}</td>
+                    <td>${entity.age}</td>
+                    <td>${entity.idcard}</td>
                    <%--  <td>${entity.classname}</td> --%>
                     <td>
-                    <a href="<c:url value="/stu/"/>delete/${entity.id}?pageNO=${pageNO}" class="abtn">删除</a>
+                    <a href="<c:url value="/stu/"/>delete/${entity.id}?pageNO=${pageNO}" class="abtn" onclick="if(confirm('确定删除?')==false)return false;">删除</a>
                     <a href="edit/${entity.id}" class="abtn">编辑</a>
                     </td>
                 </tr>
@@ -40,7 +44,7 @@
         <div id="pager"></div>
         <p>
             <a href="add" class="abtn out">添加</a>
-            <input type="submit"  value="批量删除" class="btn out"/>
+            <input type="submit"  value="批量删除" class="btn out" onclick="if(confirm('确定删除?')==false)return false;" style="cursor:pointer;">
         </p>
         <p style="color: red">${message}</p>
         <!--分页 -->

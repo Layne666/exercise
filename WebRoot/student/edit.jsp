@@ -36,11 +36,6 @@
                 <form:input path="tel" size="11"/>
                 <form:errors path="tel" cssClass="error"></form:errors>
             </p>
-            <p>
-                <label for="address">居住地址：</label>
-                <form:input path="address" size="50"/>
-                <form:errors path="address" cssClass="error"></form:errors>
-            </p>
              <p>
                 <label for="classid">班级</label>
                 <%-- <form:select path="productType.id">
@@ -54,7 +49,7 @@
             </p>
             
             <form:hidden path="id" />
-            <input type="submit" value="保存" class="btn out">
+            <input type="submit" value="保存" class="btn out" style="cursor:pointer;">
             </fieldset>
         </form:form>
         <p style="color: red">${message}</p>

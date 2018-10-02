@@ -29,11 +29,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <ul class="nav" id="main-menu">
                    <c:if test="${user.usertype==1}">
                     <li>
-                        <a href="stu/list" target="right"><i class="fa fa-desktop "></i>学生管理 </a>
+                        <a href="stu/list" target="right"><i class="fa fa-desktop "></i>会员管理 </a>
                     </li>
 
                     <li>
-                        <a href="tea/list"  target="right"><i class="fa fa-table "></i>教师管理</a>
+                        <a href="tea/list"  target="right"><i class="fa fa-table "></i>教练管理</a>
                     </li>
                     <li>
                         <a href="cou/list"  target="right"><i class="fa fa-edit "></i>课程管理</a>

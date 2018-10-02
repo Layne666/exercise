@@ -38,7 +38,7 @@
   </insert>
   
   <sql id="Base_Column_List">
-    id, name, sex, address, tel, classid, usertype, password, loginname
+    id, name, sex, age, tel, classid, idcard
   </sql>
   
    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

@@ -10,29 +10,17 @@
 </head>
 <body>
     <div class="main">
-        <h2 class="title"><span>添加学生</span></h2>
+        <h2 class="title"><span>添加会员</span></h2>
         <form:form action="addSave" modelAttribute="entity">
         <fieldset>
-            <legend>学生</legend>
+            <legend>会员</legend>
             <p>
-                <label for="name">学生姓名：</label>
-                <form:input path="name" size="50"/>
+                <label for="name">会员姓名：</label>
+                <form:input path="name" size="20" autocomplete="off"/>
                 <form:errors path="name" cssClass="error"></form:errors>
             </p>
-            
             <p>
-                <label for="name">登录名：</label>
-                <form:input path="loginname" size="50"/>
-                <form:errors path="loginname" cssClass="error"></form:errors>
-            </p>
-            <p>
-                <label for="password">密码：</label>
-                <form:password path="password" size="50" showPassword="true"/>
-                <form:errors path="password" cssClass="error"></form:errors>
-            </p>
-            
-            <p>
-                <label for="sex">学生性别：</label>
+                <label for="sex">会员性别：</label>
                 <form:select path="sex">
                      <form:option value="0">男</form:option>
                      <form:option value="1">女</form:option>
@@ -40,17 +28,22 @@
                 <form:errors path="sex" cssClass="error"></form:errors>
             </p>
             <p>
-                <label for="tel">学生电话：</label>
-                <form:input path="tel" size="11"/>
+                <label for="age">会员年龄：</label>
+                <form:input path="age" size="20" autocomplete="off"/>
+                <form:errors path="age" cssClass="error"></form:errors>
+            </p>
+            <p>
+                <label for="tel">会员电话：</label>
+                <form:input path="tel" size="20" autocomplete="off"/>
                 <form:errors path="tel" cssClass="error"></form:errors>
             </p>
             <p>
-                <label for="address">居住地址：</label>
-                <form:input path="address" size="50"/>
-                <form:errors path="address" cssClass="error"></form:errors>
+                <label for="idcard">身份证：</label>
+                <form:input path="idcard" size="22" autocomplete="off"/>
+                <form:errors path="idcard" cssClass="error"></form:errors>
             </p>
             <p>
-                <label for="classid">班级</label>
+                <label for="classid">班级：</label>
                 <%-- <form:select path="productType.id">
                      <form:option value="0">--请选择--</form:option>
                      <form:options items="${productTypes}"  itemLabel="name" itemValue="id"/>
@@ -62,7 +55,7 @@
                 <form:errors path="classid" cssClass="error"></form:errors>
             </p>
             <p>
-              <input type="submit" value="保存" class="btn out">
+              <input type="submit" value="保存" class="btn out" style="cursor:pointer;">
             </p>
         </fieldset>
         </form:form>

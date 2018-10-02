@@ -39,7 +39,7 @@ public class StudentController {
 	
 	@RequestMapping("/list")
 	public String getlist(@RequestParam(required=false,defaultValue="1") int pageNO,Model model) {
-		int size=3;
+		int size=10;
 	    List<Student> slist=studentService.getStudentPager(pageNO, size);
 	    model.addAttribute("pageNO", pageNO);
 	    model.addAttribute("size", size);

@@ -10,12 +10,7 @@ import com.offcn.pojo.Student;
 import com.offcn.pojo.StudentView;
 import com.offcn.pojo.Teacher;
 
-/**
- * <p>Company: offcn</p>
- * @author zgf
- * @date 2017年5月22日
- * @version 1.0
- */
+
 public interface TeacherService {
 
 	public List<Teacher> getTeacherPager(int pageNO, int size);
