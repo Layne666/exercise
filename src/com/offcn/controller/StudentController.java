@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.offcn.pojo.Classes;
-import com.offcn.pojo.CourseExt;
 import com.offcn.pojo.Sc;
 import com.offcn.pojo.Student;
 import com.offcn.service.ClassesService;
@@ -50,8 +48,13 @@ public class StudentController {
 	
 	//重定向一定要写绝对路径eg:redirect:/stu/list
 	@RequestMapping("/delete/{id}")
-	public String  delete(@PathVariable int id,Model model) {
-		studentService.deleteByPrimaryKey(id);
+	public String  delete(@PathVariable int id,Model model,RedirectAttributes redirectAttributes) {
+		int count = studentService.deleteByPrimaryKey(id);
+		if(count>0){
+			redirectAttributes.addFlashAttribute("message", "删除成功！");
+		}else{
+			redirectAttributes.addFlashAttribute("message", "删除失败！");
+		}
 		return "redirect:/stu/list";
 	}
 	
@@ -60,9 +63,9 @@ public class StudentController {
 		int rows=0;
 		rows=studentService.multiDelete(ids);
 		if(rows>0){
-			redirectAttributes.addFlashAttribute("message", "成功删除！");
+			redirectAttributes.addFlashAttribute("message", "删除"+rows+"行记录成功！");
 		}else{
-			redirectAttributes.addFlashAttribute("message", "删除shibai！");
+			redirectAttributes.addFlashAttribute("message", "删除失败！");
 		}
 		return "redirect:/stu/list";
 	}
@@ -107,19 +110,24 @@ public class StudentController {
 	
 	//
 	@RequestMapping("/editSave")
-	public String editSave(Model model,Student student) {
-		studentService.updateByPrimaryKey(student);
-		return "redirect:/stu/list";
+	public String editSave(Model model,@ModelAttribute("entity") @Valid Student entity,BindingResult bindingResult) {
+		if(bindingResult.hasErrors()){
+			 model.addAttribute("entity", entity);
+            return "student/edit";
+		}else{
+			studentService.updateByPrimaryKey(entity);
+			return "redirect:/stu/list";
+		}
 	}
 	
-	@RequestMapping("/getXuXiu")
+	/*@RequestMapping("/getXuXiu")
 	public String getXuXiu(Model model,HttpServletRequest req){
 		HttpSession session=req.getSession();
 		Student student=(Student) session.getAttribute("user");
 		List<CourseExt> clist= studentService.getXuxiu(student.getClassid());
 		model.addAttribute("colist", clist);
 		return "student/colist";
-	}
+	}*/
 	
 	@RequestMapping(value="/semycou",produces="text/html;charset=utf8")
 	@ResponseBody
@@ -147,14 +155,14 @@ public class StudentController {
 	}
 	
 	
-	@RequestMapping("/getStuCourse")
+	/*@RequestMapping("/getStuCourse")
 	public String getStuCourse(Model model,HttpServletRequest req){
 		HttpSession session=req.getSession();
 		Student student=(Student) session.getAttribute("user");
 		List<CourseExt> ctlist=studentService.getMycourses(student.getClassid(), student.getId());
 		model.addAttribute("ctlist", ctlist);
 		return "student/cslist";
-	}
+	}*/
 	
 	
 }

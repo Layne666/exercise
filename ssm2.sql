@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 02/10/2018 10:26:42
+ Date: 03/10/2018 20:52:34
 */
 
 SET NAMES utf8mb4;
@@ -131,60 +131,26 @@ INSERT INTO `grade` VALUES (8, 1, 7, 1, 34, 54, 88);
 INSERT INTO `grade` VALUES (9, 1, 10, 1, 33, 55, 88);
 
 -- ----------------------------
--- Table structure for sc
--- ----------------------------
-DROP TABLE IF EXISTS `sc`;
-CREATE TABLE `sc`  (
-  `sid` int(11) NOT NULL,
-  `tid` int(11) NOT NULL,
-  `cid` int(11) NOT NULL,
-  PRIMARY KEY (`sid`, `cid`) USING BTREE,
-  INDEX `cId1`(`cid`) USING BTREE,
-  INDEX `tId1`(`tid`) USING BTREE,
-  CONSTRAINT `cId1` FOREIGN KEY (`cid`) REFERENCES `course` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  CONSTRAINT `sId1` FOREIGN KEY (`sid`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  CONSTRAINT `tId1` FOREIGN KEY (`tid`) REFERENCES `teacher` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of sc
--- ----------------------------
-INSERT INTO `sc` VALUES (1, 1, 1);
-INSERT INTO `sc` VALUES (1, 1, 7);
-INSERT INTO `sc` VALUES (1, 1, 10);
-
--- ----------------------------
 -- Table structure for student
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student`  (
   `id` int(30) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `tel` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `tel` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `sex` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `age` int(11) DEFAULT NULL,
-  `idcard` varchar(18) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `classid` int(30) DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `s_c`(`classid`) USING BTREE,
-  CONSTRAINT `classid` FOREIGN KEY (`classid`) REFERENCES `classes` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 48 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  `idcard` varchar(18) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 51 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES (1, 'ahui', '15635354675', '男', 18, '123', 5);
-INSERT INTO `student` VALUES (8, '赵璇', '123432133', '男', 18, '23', 1);
-INSERT INTO `student` VALUES (9, '张宇航111', '11111', '男', 18, '23', 2);
-INSERT INTO `student` VALUES (21, '22', '222', '男', 11, '3', 1);
-INSERT INTO `student` VALUES (28, '22', '111', '男', 12, '123', 1);
-INSERT INTO `student` VALUES (29, 'ee', '15635385193', '男', 12, '123', 1);
-INSERT INTO `student` VALUES (38, 'wwww', '15635385193', '男', 12, '123', 1);
-INSERT INTO `student` VALUES (41, '张小兰', '15525365434', '男', 13, '123', 2);
-INSERT INTO `student` VALUES (43, 'ddd', 'dd', '男', 31, '123', 2);
-INSERT INTO `student` VALUES (44, 'qq', '2222222222', '男', 13, '123', 4);
-INSERT INTO `student` VALUES (45, 'ww', '1121', '男', 31, '123', 2);
-INSERT INTO `student` VALUES (46, '22', '222', '男', 13, '213', 1);
+INSERT INTO `student` VALUES (1, 'qqq', '15635354675', '男', 22, '12312312312312312');
+INSERT INTO `student` VALUES (21, '22', '222', '男', 11, '3');
+INSERT INTO `student` VALUES (38, 'wwww', '15635385193', '男', 12, '123');
+INSERT INTO `student` VALUES (50, '吕芒雷', '18395589877', '男', 22, '342522199606040610');
 
 -- ----------------------------
 -- Table structure for teacher
@@ -192,24 +158,23 @@ INSERT INTO `student` VALUES (46, '22', '222', '男', 13, '213', 1);
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `usertype` int(11) DEFAULT 3,
-  `loginname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `password` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT 'aaaaaa',
-  `workId` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `tel` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `sex` char(2) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `idcard` varchar(18) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `loginname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'aaaaaa',
+  `usertype` int(11) NOT NULL DEFAULT 2,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
-INSERT INTO `teacher` VALUES (1, '王老师', 3, 'wls', '123', '12');
-INSERT INTO `teacher` VALUES (2, '王老师师', 3, NULL, 'aaaaaa', '123');
-INSERT INTO `teacher` VALUES (4, 'zhaojing', 3, 'zhaojing', 'aaaaaa', NULL);
-INSERT INTO `teacher` VALUES (5, '利润率', 3, NULL, NULL, NULL);
-INSERT INTO `teacher` VALUES (6, 'wwww', 3, NULL, NULL, NULL);
-INSERT INTO `teacher` VALUES (10, '张小姐', 3, NULL, 'aaaaaa', NULL);
-INSERT INTO `teacher` VALUES (11, '李晓玉111', 3, 'lixiaoyu', '1111', NULL);
+INSERT INTO `teacher` VALUES (1, '王老师', '18395584512', '男', 24, '342522199505145287', 'wls', '123', 2);
+INSERT INTO `teacher` VALUES (2, '吕芒雷', '18395589877', '男', 22, '342522199606040610', 'lml', '123', 2);
+INSERT INTO `teacher` VALUES (3, '张三', '13856248597', '男', 30, '342521184505193452', 'zs', '123', 2);
 
 -- ----------------------------
 -- Table structure for user

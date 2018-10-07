@@ -39,11 +39,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				   <font color="white" style="text-decoration:none" size="4">
   					  欢迎您，${sessionScope.user.name}!<br/></font> 
   				   <font size="4">
-  				        <a href="javascript:;" style="text-decoration:none;">退出</a>
+  				        <a href="javascript:;" id="logout" style="text-decoration:none;">退出</a>
   				   </font>
   				</td>
   			</tr>
   		</table>
   	</div>
   </body>
+  <script type="text/javascript" src="/styles/bootstrap/js/jquery-1.10.2.js"></script>
+  <script type="text/javascript">
+  	$(function(){
+  		$("#logout").click(function(){
+  			$.ajax({
+  				type:'post',
+				url:'/admin/logout',
+				success:function(data){
+					if(data){
+						parent.location.reload();
+					}else {
+						alert("退出失败！");
+					}
+				}
+  			});
+  		});
+  	});
+  </script>
 </html>

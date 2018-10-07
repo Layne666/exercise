@@ -349,8 +349,8 @@ right
 					</li>
 					<li>
 					    <select name="usertype" class="role">
-					       <option value="1">系统管理员</option>
 					       <option value="2">教练</option>
+					       <option value="1">系统管理员</option>
 					    </select>
 					</li>
 					<li>

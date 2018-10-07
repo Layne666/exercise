@@ -43,20 +43,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                     </c:if>
                     
-                    <c:if test="${user.usertype==3}">
-                    <li>
-                        <a href="homepage/test2.jsp" target="right"><i class="fa fa-desktop "></i>查看课表 </a>
-                    </li>
-
-                    <li>
-                        <a href="tea/getMyStu"  target="right"><i class="fa fa-table "></i>学生管理</a>
-                    </li>
-                   
-                    <li>
-                        <a href="homepage/test.jsp"  target="right"><i class="fa fa-bar-chart-o"></i>修改密码</a>
-                    </li>
-                    </c:if>
-                    
                     <c:if test="${user.usertype==2}">
                     <li>
                         <a href="stu/getStuCourse" target="right"><i class="fa fa-desktop "></i>查看课表 </a>
@@ -68,6 +54,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <li>
                         <a  href="stu/getXuXiu"  target="right"><i class="fa fa-qrcode "></i>选课</a>
                     </li>
+                    <li>
+                        <a href="homepage/test.jsp"  target="right"><i class="fa fa-bar-chart-o"></i>修改密码</a>
+                    </li>
+                    <li>
+                        <a href="homepage/test2.jsp" target="right"><i class="fa fa-desktop "></i>查看课表 </a>
+                    </li>
+
+                    <li>
+                        <a href="tea/getMyStu"  target="right"><i class="fa fa-table "></i>学生管理</a>
+                    </li>
+                   
                     <li>
                         <a href="homepage/test.jsp"  target="right"><i class="fa fa-bar-chart-o"></i>修改密码</a>
                     </li>

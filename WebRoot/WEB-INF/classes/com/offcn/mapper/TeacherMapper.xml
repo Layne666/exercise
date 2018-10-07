@@ -21,8 +21,9 @@
     <select id="getTeacherCount" resultType="int">select count(*) from teacher</select>
     
     <insert id="insert" parameterType="Teacher">
-       insert into teacher (id, name,usertype, password,  workId,loginname)
-       values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{usertype,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR},#{workid,jdbcType=VARCHAR}, #{loginname,jdbcType=VARCHAR})
+       insert into teacher (id, name,tel, sex,  age,idcard,loginname,password)
+       values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR},  #{sex,jdbcType=CHAR},#{age,jdbcType=INTEGER},
+      #{idcard,jdbcType=VARCHAR}, #{loginname,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR})
     </insert>
    
     <delete id="delete">
@@ -35,18 +36,24 @@
 	      <if test="name != null">
 	        name = #{name,jdbcType=VARCHAR},
 	      </if>
-	      <if test="usertype != null">
-	        usertype = #{usertype,jdbcType=INTEGER},
+	      <if test="tel != null">
+	        tel = #{tel,jdbcType=VARCHAR},
 	      </if>
-	      <if test="password != null">
-	        password = #{password,jdbcType=VARCHAR},
+	      <if test="sex != null">
+	        sex = #{sex,jdbcType=CHAR},
 	      </if>
-	      <if test="workid != null">
-	        workId = #{workid,jdbcType=VARCHAR},
+	      <if test="age != null">
+	        age = #{age,jdbcType=INTEGER},
+	      </if>
+	      <if test="idcard != null">
+	        idcard = #{idcard,jdbcType=VARCHAR},
 	      </if>
 	      <if test="loginname != null">
             loginname = #{loginname,jdbcType=VARCHAR},
           </if>
+          <if test="password != null">
+	        password = #{password,jdbcType=VARCHAR},
+	      </if>
 	    </set>
 	    where id = #{id,jdbcType=INTEGER}
     </update>

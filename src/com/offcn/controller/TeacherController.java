@@ -1,8 +1,6 @@
 package com.offcn.controller;
 
-import java.io.File;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -102,7 +100,6 @@ public class TeacherController {
              return "teacher/add";
            
         }else{
-        	entity.setPassword("aaaaaa");
         	teacherService.insert(entity);
              return "redirect:/tea/list";    
              
@@ -130,7 +127,6 @@ public class TeacherController {
              return "/teacher/edit";
             
         }else{
-        	//entity.setPassword("aaaaaa");
         	teacherService.update(entity);
             return "redirect:list";    
             
