@@ -31,24 +31,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <li>
                         <a href="stu/list" target="right"><i class="fa fa-desktop "></i>会员管理 </a>
                     </li>
-
                     <li>
                         <a href="tea/list"  target="right"><i class="fa fa-table "></i>教练管理</a>
                     </li>
                     <li>
+                        <a href="record/list"  target="right"><i class="fa fa-table "></i>记录管理</a>
+                    </li>
+                    <!-- <li>
                         <a href="cou/list"  target="right"><i class="fa fa-edit "></i>课程管理</a>
                     </li>
                     <li>
                         <a  href="cla/list"  target="right"><i class="fa fa-qrcode "></i>班级管理</a>
-                    </li>
+                    </li> -->
                     </c:if>
                     
                     <c:if test="${user.usertype==2}">
                     <li>
-                        <a href="stu/getStuCourse" target="right"><i class="fa fa-desktop "></i>查看课表 </a>
+                        <a href="stu/list" target="right"><i class="fa fa-desktop "></i>会员管理 </a>
+                    </li>
+                   <li>
+                        <a href="stu/dakalist" target="right"><i class="fa fa-edit "></i>上课打卡 </a>
+                    </li>
+                    <li>
+                        <a href="tea/editself/${user.id}"  target="right"><i class="fa fa-bar-chart-o"></i>个人中心</a>
+                    </li>
+                    <li>
+                        <a href="record/tealist"  target="right"><i class="fa fa-table "></i>记录管理</a>
                     </li>
 
-                    <li>
+                     <!-- <li>
                         <a href="homepage/test3.jsp"  target="right"><i class="fa fa-table "></i>成绩查询</a>
                     </li>
                     <li>
@@ -63,11 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                     <li>
                         <a href="tea/getMyStu"  target="right"><i class="fa fa-table "></i>学生管理</a>
-                    </li>
-                   
-                    <li>
-                        <a href="homepage/test.jsp"  target="right"><i class="fa fa-bar-chart-o"></i>修改密码</a>
-                    </li>
+                    </li> -->
                     </c:if>
                 </ul>
              </div>

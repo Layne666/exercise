@@ -1,7 +1,5 @@
 package com.offcn.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -10,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.offcn.pojo.Classes;
-import com.offcn.pojo.Student;
 import com.offcn.pojo.Teacher;
 import com.offcn.pojo.User;
 import com.offcn.service.TeacherService;
@@ -73,7 +69,7 @@ public class UserController {
 	@RequestMapping("/logout")
 	@ResponseBody
 	public boolean logout(HttpSession session){
-		session.removeAttribute("user");
+		session.invalidate();
 		return true;
 	}
 	

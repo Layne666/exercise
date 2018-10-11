@@ -23,6 +23,17 @@ public class Student {
     @Pattern(regexp="^[1-9]\\d{5}(18|19|([23]\\d))\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$",message="请输入正确的身份证！")
     private String idcard;
 
+    @NotNull(message="剩余课时数不可以为空！")
+    private Integer sykss;
+    
+	public Integer getSykss() {
+		return sykss;
+	}
+
+	public void setSykss(Integer sykss) {
+		this.sykss = sykss;
+	}
+
 	public Integer getId() {
 		return id;
 	}

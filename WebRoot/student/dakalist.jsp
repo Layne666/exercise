@@ -10,11 +10,10 @@
 </head>
 <body>
     <div class="main">
-        <h2 class="title"><span>会员管理</span></h2>
+        <h2 class="title"><span>会员上课打卡</span></h2>
         <form action="<c:url value="/stu/deletes?pageNO=${pageNO}"/>" method="post">
         <table border="1" width="100%" class="tab" >
             <tr>
-                <th><input type="checkbox" id="chbAll"></th>
                 <th>会员编号</th>
                 <th>会员姓名</th>
                 <th>手机号</th>
@@ -27,7 +26,6 @@
             </tr>
             <c:forEach var="entity" items="${slist}" varStatus="status">
                 <tr align="center">
-                    <th><input type="checkbox" name="id" value="${entity.id}"></th>
                     <td>${entity.id}</td>
                     <td>${entity.name}</td>
                     <td>${entity.tel}</td>
@@ -37,44 +35,29 @@
                     <td>${entity.sykss}</td>
                    <%--  <td>${entity.classname}</td> --%>
                     <td>
-                    <a href="<c:url value="/stu/"/>delete/${entity.id}?pageNO=${pageNO}" class="abtn" onclick="if(confirm('确定删除?')==false)return false;">删除</a>
-                    <a href="edit/${entity.id}" class="abtn">编辑</a>
+                    <a href="/stu/daka/${entity.id}" class="abtn daka">打卡</a>
                     </td>
                 </tr>
             </c:forEach>
         </table>
         <div id="pager"></div>
         <p>
-            <a href="add" class="abtn out">添加</a>
-            <input type="submit"  value="批量删除" class="btn out" style="cursor:pointer;">
-            <span style="float:right;">总共${count}数据</span>
+        	 <span style="float:right;">总共${count}数据</span>
         </p>
-        <p style="color: red">${message}</p>
         <!--分页 -->
         <script type="text/javascript" src="<c:url value="/styles/bootstrap/js/jquery-1.10.2.js"/>" ></script>
         <link href="<c:url value="/scripts/pagination.css"/>"  type="text/css" rel="stylesheet" />
         <script type="text/javascript" src="<c:url value="/scripts/jquery.pagination.js"/>" ></script>
         <script type="text/javascript">
-        	var checkbox = $("input[type='checkbox']");
-        	$("#chbAll").click(function(){
-        		if($(this).is(":checked")){
-        			checkbox.prop("checked","checked");
-        		}else{
-        			checkbox.prop("checked","");
-        		}
-        	});
-        	$(".btn").click(function(){
-        		if(!checkbox.is(":checked")){
-        			alert("请至少选择一条数据进行删除！");
+	        $(".daka").click(function(){
+	        	if(confirm('确定打卡?')==false){
         			return false;
-        		}else{
-        			if(confirm('确定删除?')==false){
-        				return false;
-        			}else{
-        				return true;
-        			}
+        		}else if($(this).parent().siblings().eq(6).text()<=0){
+        			alert("剩余课时数不够！");
+        			return false;
         		}
-        	});
+        		return true;
+	        });
            //初始化分页组件
            var count=${count};
            var size=${size};
@@ -91,7 +74,7 @@
            
            //回调方法
            function handlePaginationClick(new_page_index, pagination_container){
-               location.href="<c:url value="/stu/"/>list?pageNO="+(new_page_index+1);
+               location.href="<c:url value="/stu/"/>dakalist?pageNO="+(new_page_index+1);
            }
         </script>
     </form>

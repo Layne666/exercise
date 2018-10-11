@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.offcn.pojo.Classes;
+import com.offcn.pojo.Record;
 import com.offcn.pojo.Sc;
 import com.offcn.pojo.Student;
+import com.offcn.pojo.Teacher;
 import com.offcn.service.ClassesService;
+import com.offcn.service.RecordService;
 import com.offcn.service.StudentService;
 
 @Controller
@@ -34,6 +37,19 @@ public class StudentController {
 	@Resource
 	ClassesService classesService;
 	
+	@Resource
+	RecordService recordService;
+	
+	@RequestMapping("/daka/{id}")
+	public String daka(@PathVariable int id,HttpSession session){
+		Student stu = studentService.selectByPrimaryKey(id);
+		stu.setSykss(stu.getSykss()-1);
+		Teacher tea = (Teacher) session.getAttribute("user");
+		Record record = new Record(stu,tea);
+		recordService.insert(record);
+		studentService.updateByPrimaryKey(stu);
+		return "redirect:/stu/dakalist";
+	}
 	
 	@RequestMapping("/list")
 	public String getlist(@RequestParam(required=false,defaultValue="1") int pageNO,Model model) {
@@ -45,7 +61,26 @@ public class StudentController {
 	    model.addAttribute("slist", slist);
 		return "student/list";
 	}
-	
+	/*@RequestMapping("/tealist")
+	public String gettealist(@RequestParam(required=false,defaultValue="1") int pageNO,Model model) {
+		int size=10;
+	    List<Student> slist=studentService.getStudentPager(pageNO, size);
+	    model.addAttribute("pageNO", pageNO);
+	    model.addAttribute("size", size);
+	    model.addAttribute("count", studentService.getCount());
+	    model.addAttribute("slist", slist);
+		return "student/tealist";
+	}*/
+	@RequestMapping("/dakalist")
+	public String getdakalist(@RequestParam(required=false,defaultValue="1") int pageNO,Model model,HttpSession session) {
+		int size=10;
+	    List<Student> slist=studentService.getStudentPager(pageNO, size);
+	    model.addAttribute("pageNO", pageNO);
+	    model.addAttribute("size", size);
+	    model.addAttribute("count", studentService.getCount());
+	    model.addAttribute("slist", slist);
+		return "student/dakalist";
+	}
 	//重定向一定要写绝对路径eg:redirect:/stu/list
 	@RequestMapping("/delete/{id}")
 	public String  delete(@PathVariable int id,Model model,RedirectAttributes redirectAttributes) {
@@ -119,6 +154,17 @@ public class StudentController {
 			return "redirect:/stu/list";
 		}
 	}
+	
+	/*@RequestMapping("/dakalist")
+	public String dakalist(@RequestParam(required=false,defaultValue="1") int pageNO,Model model) {
+		int size=10;
+	    List<Student> slist=studentService.getStudentPager(pageNO, size);
+	    model.addAttribute("pageNO", pageNO);
+	    model.addAttribute("size", size);
+	    model.addAttribute("count", studentService.getCount());
+	    model.addAttribute("slist", slist);
+		return "student/dakalist";
+	}*/
 	
 	/*@RequestMapping("/getXuXiu")
 	public String getXuXiu(Model model,HttpServletRequest req){

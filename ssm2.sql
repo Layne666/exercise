@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 03/10/2018 20:52:34
+ Date: 12/10/2018 02:07:52
 */
 
 SET NAMES utf8mb4;
@@ -121,36 +121,57 @@ CREATE TABLE `grade`  (
   CONSTRAINT `cid2` FOREIGN KEY (`cid`) REFERENCES `course` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `sid2` FOREIGN KEY (`sid`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
   CONSTRAINT `tid2` FOREIGN KEY (`tid`) REFERENCES `teacher` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of grade
+-- Table structure for record
 -- ----------------------------
-INSERT INTO `grade` VALUES (7, 1, 1, 1, 23, 45, 68);
-INSERT INTO `grade` VALUES (8, 1, 7, 1, 34, 54, 88);
-INSERT INTO `grade` VALUES (9, 1, 10, 1, 33, 55, 88);
+DROP TABLE IF EXISTS `record`;
+CREATE TABLE `record`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kss` int(11) NOT NULL,
+  `ksrq` date NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tid` int(11) NOT NULL,
+  `sid` int(11) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of record
+-- ----------------------------
+INSERT INTO `record` VALUES (14, 1, '2018-10-12', 3, 58);
+INSERT INTO `record` VALUES (15, 1, '2018-10-11', 3, 1);
 
 -- ----------------------------
 -- Table structure for student
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student`  (
-  `id` int(30) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `tel` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `sex` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `age` int(11) DEFAULT NULL,
   `idcard` varchar(18) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `sykss` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 51 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 61 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES (1, 'qqq', '15635354675', '男', 22, '12312312312312312');
-INSERT INTO `student` VALUES (21, '22', '222', '男', 11, '3');
-INSERT INTO `student` VALUES (38, 'wwww', '15635385193', '男', 12, '123');
-INSERT INTO `student` VALUES (50, '吕芒雷', '18395589877', '男', 22, '342522199606040610');
+INSERT INTO `student` VALUES (1, 'qqq', '15635354675', '男', 22, '342522199602081257', 93);
+INSERT INTO `student` VALUES (21, '22', '222', '男', 11, '3', 12);
+INSERT INTO `student` VALUES (38, 'wwww', '15635385193', '男', 12, '123', 21);
+INSERT INTO `student` VALUES (50, 'laa', '18395589212', '男', 22, '342522199606046666', 22);
+INSERT INTO `student` VALUES (51, 'wwww', '15635385193', '男', 12, '123', 5);
+INSERT INTO `student` VALUES (53, 'wwww', '15635385193', '男', 12, '123', 43);
+INSERT INTO `student` VALUES (55, 'aas', '18395546152', '男', 18, '342512199804145632', 15);
+INSERT INTO `student` VALUES (56, 'cccc', '18395524563', '男', 16, '342861199506131458', 19);
+INSERT INTO `student` VALUES (57, 'zzz', '18352467412', '男', 19, '342519199605241856', 31);
+INSERT INTO `student` VALUES (58, 'QQQ', '18395589542', '女', 66, '342522198002145781', 87);
+INSERT INTO `student` VALUES (59, 'cccc', '18395524563', '男', 16, '342861199506131458', 21);
+INSERT INTO `student` VALUES (60, 'cccc', '18395524563', '男', 16, '342861199506131458', 21);
 
 -- ----------------------------
 -- Table structure for teacher
@@ -173,7 +194,6 @@ CREATE TABLE `teacher`  (
 -- Records of teacher
 -- ----------------------------
 INSERT INTO `teacher` VALUES (1, '王老师', '18395584512', '男', 24, '342522199505145287', 'wls', '123', 2);
-INSERT INTO `teacher` VALUES (2, '吕芒雷', '18395589877', '男', 22, '342522199606040610', 'lml', '123', 2);
 INSERT INTO `teacher` VALUES (3, '张三', '13856248597', '男', 30, '342521184505193452', 'zs', '123', 2);
 
 -- ----------------------------

@@ -47,6 +47,7 @@
         <p>
             <a href="add" class="abtn out">添加</a>
             <input type="submit"  value="批量删除" class="btn out" style="cursor:pointer;"/>
+            <span style="float:right;">总共${count}数据</span>
         </p>
         <p style="color: red">${message}</p>
         <!--分页 -->

@@ -115,7 +115,11 @@ public class TeacherController {
         model.addAttribute("entity", teacherService.getTeacherId(id));
         return "teacher/edit";
     }
-    
+    @RequestMapping("/editself/{id}")
+    public String editself(Model model,@PathVariable int id){
+        model.addAttribute("entity", teacherService.getTeacherId(id));
+        return "teacher/editself";
+    }
     /*
      * 保存
      */
@@ -129,6 +133,21 @@ public class TeacherController {
         }else{
         	teacherService.update(entity);
             return "redirect:list";    
+            
+        }
+       
+    }
+    @RequestMapping("/editselfSave")
+    public String editselfSave(Model model,@ModelAttribute("entity") @Valid Teacher entity,BindingResult bindingResult){
+        //如果模型中存在错误
+        if(bindingResult.hasErrors()){
+        	 model.addAttribute("entity", entity);
+             return "/teacher/editself";
+            
+        }else{
+        	teacherService.update(entity);
+        	model.addAttribute("message", "修改成功！");
+            return "forward:editself/"+entity.getId();    
             
         }
        

@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <link href="<c:url value="/styles/main.css" />" type="text/css" rel="stylesheet" />
-<title>添加学生</title>
+<title>添加 会员</title>
 </head>
 <body>
     <div class="main">
@@ -41,6 +41,11 @@
                 <label for="idcard">身份证：</label>
                 <form:input path="idcard" size="22" autocomplete="off"/>
                 <form:errors path="idcard" cssClass="error"></form:errors>
+            </p>
+            <p>
+                <label for="sykss">剩余课时数：</label>
+                <form:input path="sykss" size="18" autocomplete="off"/>
+                <form:errors path="sykss" cssClass="error"></form:errors>
             </p>
            <%--  <p>
                 <label for="classid">班级：</label>
