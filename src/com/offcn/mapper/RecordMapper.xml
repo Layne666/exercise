@@ -22,6 +22,12 @@
   <select id="getRecordPager" resultMap="BaseResultMap">
     select * from record 
     <where>
+    	<if test="kssj!=null">
+    		and date_format(ksrq,'%Y%m')&gt;=#{kssj}
+    	</if>
+    	<if test="jssj!=null">
+    		and date_format(ksrq,'%Y%m')&lt;=#{jssj}
+    	</if>
     	<if test="tid!=null">
     		tid=#{tid}
     	</if>

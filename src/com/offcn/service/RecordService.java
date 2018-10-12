@@ -5,7 +5,7 @@ import java.util.List;
 import com.offcn.pojo.Record;
 
 public interface RecordService {
-	List<Record> getRecordPager(Integer tid,int pageNO, int size);
+	List<Record> getRecordPager(String kssj,String jssj,Integer tid,int pageNO, int size);
 	
 	int getCount();
 	

@@ -23,24 +23,28 @@ public class RecordController {
 	private RecordService recordService;
 
 	@RequestMapping("/tealist")
-	public String gettealist(@RequestParam(required=false,defaultValue="1") int pageNO,Model model,HttpSession session) {
+	public String gettealist(@RequestParam(required=false,defaultValue="1") int pageNO,Model model,HttpSession session,String kssj,String jssj) {
 		int size=10;
 		Teacher tea=(Teacher)session.getAttribute("user");
-	    List<Record> slist=recordService.getRecordPager(tea.getId(),pageNO, size);
+	    List<Record> slist=recordService.getRecordPager(kssj,jssj,tea.getId(),pageNO, size);
 	    model.addAttribute("pageNO", pageNO);
 	    model.addAttribute("size", size);
 	    model.addAttribute("count", recordService.getCount());
 	    model.addAttribute("slist", slist);
+	    model.addAttribute("kssj", kssj);
+	    model.addAttribute("jssj", jssj);
 		return "record/list";
 	}
 	@RequestMapping("/list")
-	public String getlist(@RequestParam(required=false,defaultValue="1") int pageNO,Model model,HttpSession session) {
+	public String getlist(@RequestParam(required=false,defaultValue="1") int pageNO,Model model,HttpSession session,String kssj,String jssj) {
 		int size=10;
-	    List<Record> slist=recordService.getRecordPager(null,pageNO, size);
+	    List<Record> slist=recordService.getRecordPager(kssj,jssj,null,pageNO, size);
 	    model.addAttribute("pageNO", pageNO);
 	    model.addAttribute("size", size);
 	    model.addAttribute("count", recordService.getCount());
 	    model.addAttribute("slist", slist);
+	    model.addAttribute("kssj", kssj);
+	    model.addAttribute("jssj", jssj);
 		return "record/list";
 	}
 	

@@ -20,10 +20,10 @@ public class RecordServiceImpl implements RecordService {
 	RecordMapper recordMapper;
 	
 	@Override
-	public List<Record> getRecordPager(Integer tid,int pageNO, int size) {
+	public List<Record> getRecordPager(String kssj,String jssj,Integer tid,int pageNO, int size) {
 		// TODO Auto-generated method stub
 		int skip=(pageNO-1)*size;
-		return recordMapper.getRecordPager(tid,skip, size);
+		return recordMapper.getRecordPager(kssj, jssj, tid,skip, size);
 	}
 
 	@Override

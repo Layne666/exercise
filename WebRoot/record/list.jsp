@@ -15,8 +15,8 @@
         <form>
         	<table>
         		<tr>
-        			<td><input type="text" name="kssj" placeholder="开始时间..." />—</td>
-        			<td><input type="text" name="jssj" placeholder="结束时间..." />&nbsp;&nbsp;&nbsp;</td>
+        			<td><input type="text" name="kssj" placeholder="开始时间..." autocomplete="off" value="${kssj}"/>—</td>
+        			<td><input type="text" name="jssj" placeholder="结束时间..." autocomplete="off" value="${jssj}"/>&nbsp;&nbsp;&nbsp;</td>
         			<td><input type="submit"  value="查询" class="btn" style="cursor:pointer;"></td>
         		</tr>
         	</table>

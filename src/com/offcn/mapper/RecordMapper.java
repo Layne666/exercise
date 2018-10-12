@@ -12,7 +12,7 @@ public interface RecordMapper {
 
     Record selectByPrimaryKey(Integer id);
     
-    List<Record> getRecordPager(@Param("tid") Integer tid,@Param("skip") int skip,@Param("size") int size);
+    List<Record> getRecordPager(@Param("kssj") String kssj,@Param("jssj") String jssj,@Param("tid") Integer tid,@Param("skip") int skip,@Param("size") int size);
     
     int getCount();
     
