@@ -130,7 +130,7 @@ DROP TABLE IF EXISTS `record`;
 CREATE TABLE `record`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `kss` int(11) NOT NULL,
-  `ksrq` date NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ksrq` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `tid` int(11) NOT NULL,
   `sid` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE

@@ -48,7 +48,7 @@
                 <form:errors path="idcard" cssClass="error"></form:errors>
             </p>
             <p>
-                <label for="sykss">会员年龄：</label>
+                <label for="sykss">剩余课时数：</label>
                 <form:input path="sykss" size="18" autocomplete="off"/>
                 <form:errors path="sykss" cssClass="error"></form:errors>
             </p>
