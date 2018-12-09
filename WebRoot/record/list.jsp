@@ -12,11 +12,22 @@
 <body>
     <div class="main">
         <h2 class="title"><span>记录管理</span></h2>
-        <form>
+        <form onsubmit="return check()">
         	<table>
         		<tr>
-        			<td><input type="text" name="kssj" placeholder="开始时间..." autocomplete="off" value="${kssj}"/>—</td>
-        			<td><input type="text" name="jssj" placeholder="结束时间..." autocomplete="off" value="${jssj}"/>&nbsp;&nbsp;&nbsp;</td>
+        			<td><input id="kssj" type="date" name="kssj" placeholder="开始时间..." autocomplete="off" value="${kssj}"/>—</td>
+        			<td><input id="jssj" type="date" name="jssj" placeholder="结束时间..." autocomplete="off" value="${jssj}"/>&nbsp;&nbsp;&nbsp;</td>
+    				<%-- <c:if test="${sessionScope.user.usertype==1}">
+    					<td>
+    						<select name="sid">
+    							<option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+    							<c:forEach var="stu" items="${stus}">
+	    							<option value="${stu.id}">${stu.name}</option>
+    							</c:forEach>
+    						</select>
+    						&nbsp;&nbsp;&nbsp;
+    					</td>
+    				</c:if> --%>
         			<td><input type="submit"  value="查询" class="btn" style="cursor:pointer;"></td>
         		</tr>
         	</table>
@@ -28,6 +39,7 @@
                 <th>记录编号</th>
                 <th>上课日期</th>
                 <th>课时数</th>
+                <th>课时总金额</th>
                 <th>教练名字</th>
                 <th>会员名字</th>
                 <th>操作</th>
@@ -38,6 +50,7 @@
                     <td>${entity.id}</td>
                     <td>${entity.ksrq}</td>
                     <td>${entity.kss}</td>
+                    <td>￥${entity.ksze}</td>
                     <td>${entity.teacher.name}</td>
                     <td>${entity.student.name}</td>
                     <td>
@@ -49,7 +62,10 @@
         <div id="pager"></div>
         <p>
             <input type="submit"  value="批量删除" class="btn out" style="cursor:pointer;">
-            <span style="float:right;">总共${count}数据</span>
+            <p style="float:right;">
+            	<span>总共${count}数据，</span>
+            	<span>课时总金额为<b style="font-size: 20px;color: red;">￥${totalKsze}</b></span>
+            </p>
         </p>
         <p style="color: red">${message}</p>
         <!--分页 -->
@@ -57,6 +73,14 @@
         <link href="<c:url value="/scripts/pagination.css"/>"  type="text/css" rel="stylesheet" />
         <script type="text/javascript" src="<c:url value="/scripts/jquery.pagination.js"/>" ></script>
         <script type="text/javascript">
+        	function check(){
+        		if($("#kssj").val()>$("#jssj").val() && $("#jssj").val()!=""){
+        			alert("开始时间要小于等于结束时间！");
+        			return false;
+        		}
+        		return true;
+        	}
+        
         	var checkbox = $("input[type='checkbox']");
         	$("#chbAll").click(function(){
         		if($(this).is(":checked")){
@@ -93,7 +117,7 @@
            
            //回调方法
            function handlePaginationClick(new_page_index, pagination_container){
-               location.href="<c:url value="/stu/"/>list?pageNO="+(new_page_index+1);
+               location.href="<c:url value="/record/"/>list?pageNO="+(new_page_index+1);
            }
         </script>
     </form>

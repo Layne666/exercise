@@ -11,8 +11,10 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,15 +42,22 @@ public class StudentController {
 	@Resource
 	RecordService recordService;
 	
-	@RequestMapping("/daka/{id}")
-	public String daka(@PathVariable int id,HttpSession session){
-		Student stu = studentService.selectByPrimaryKey(id);
-		stu.setSykss(stu.getSykss()-1);
+	@GetMapping("/daka/{id}")
+	public String dakaget(Model model,@PathVariable int id) {
+		model.addAttribute("entity", studentService.selectByPrimaryKey(id));
+		return "student/daka";
+	}
+	
+	@PostMapping("/daka")
+	@ResponseBody
+	public void dakapost(Integer tid,Record record,HttpSession session){
+		Student stu = studentService.selectByPrimaryKey(tid);
+		stu.setSykss(stu.getSykss()-record.getKss());
 		Teacher tea = (Teacher) session.getAttribute("user");
-		Record record = new Record(stu,tea);
+		record.setStudent(stu);
+		record.setTeacher(tea);
 		recordService.insert(record);
 		studentService.updateByPrimaryKey(stu);
-		return "redirect:/stu/dakalist";
 	}
 	
 	@RequestMapping("/list")

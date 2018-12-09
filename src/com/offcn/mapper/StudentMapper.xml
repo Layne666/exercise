@@ -26,15 +26,15 @@
   
   <insert id="insert" parameterType="com.offcn.pojo.Student">
     insert into student (id, name, tel, 
-      sex, age, idcard,sykss
+      sex, age, sykss
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=CHAR}, #{age,jdbcType=INTEGER}, #{idcard,jdbcType=VARCHAR}, #{sykss,jdbcType=INTEGER}
+      #{sex,jdbcType=CHAR}, #{age,jdbcType=INTEGER}, #{sykss,jdbcType=INTEGER}
       )
   </insert>
   
   <sql id="Base_Column_List">
-    id, name, sex, age, tel, idcard,sykss
+    id, name, sex, age, tel, sykss
   </sql>
   
    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -58,9 +58,6 @@
     	</if>
     	<if test="age!=null">
     		age = #{age,jdbcType=INTEGER},
-    	</if>
-    	<if test="idcard!=null">
-    		 idcard = #{idcard,jdbcType=VARCHAR},
     	</if>
     	<if test="sykss!=null">
     		sykss=#{sykss,jdbcType=INTEGER},

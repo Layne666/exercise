@@ -3,6 +3,7 @@ package com.offcn.pojo;
 public class Record {
 	private Integer id;
 	private Integer kss;
+	private Double ksze;
 	private String ksrq;
 	private Student student;
 	private Teacher teacher;
@@ -35,6 +36,13 @@ public class Record {
 	}
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
+	}
+	
+	public Double getKsze() {
+		return ksze;
+	}
+	public void setKsze(Double ksze) {
+		this.ksze = ksze;
 	}
 	public Record() {
 		super();

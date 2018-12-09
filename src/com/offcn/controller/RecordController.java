@@ -15,12 +15,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.offcn.pojo.Record;
 import com.offcn.pojo.Teacher;
 import com.offcn.service.RecordService;
+import com.offcn.service.StudentService;
 
 @Controller
 @RequestMapping("/record")
 public class RecordController {
 	@Resource
 	private RecordService recordService;
+	@Resource
+	private StudentService studentService;
 
 	@RequestMapping("/tealist")
 	public String gettealist(@RequestParam(required=false,defaultValue="1") int pageNO,Model model,HttpSession session,String kssj,String jssj) {
@@ -29,10 +32,17 @@ public class RecordController {
 	    List<Record> slist=recordService.getRecordPager(kssj,jssj,tea.getId(),pageNO, size);
 	    model.addAttribute("pageNO", pageNO);
 	    model.addAttribute("size", size);
-	    model.addAttribute("count", recordService.getCount());
+	    model.addAttribute("count", recordService.getCount(kssj,jssj,tea.getId()));
 	    model.addAttribute("slist", slist);
 	    model.addAttribute("kssj", kssj);
 	    model.addAttribute("jssj", jssj);
+	    model.addAttribute("totalKsze", recordService.getTotalKsze(kssj,jssj,tea.getId(),tea.getId()));
+	    /*List<Integer> ids = recordService.getStuIds(kssj, jssj, tea.getId());
+	    Set<Student> stus= new HashSet<>();
+	    for (Integer id : ids) {
+			stus.add(studentService.selectByPrimaryKey(id));
+		}
+	    model.addAttribute("stus", stus);*/
 		return "record/list";
 	}
 	@RequestMapping("/list")
@@ -41,10 +51,17 @@ public class RecordController {
 	    List<Record> slist=recordService.getRecordPager(kssj,jssj,null,pageNO, size);
 	    model.addAttribute("pageNO", pageNO);
 	    model.addAttribute("size", size);
-	    model.addAttribute("count", recordService.getCount());
+	    model.addAttribute("count", recordService.getCount(kssj,jssj,null));
 	    model.addAttribute("slist", slist);
 	    model.addAttribute("kssj", kssj);
 	    model.addAttribute("jssj", jssj);
+	    model.addAttribute("totalKsze", recordService.getTotalKsze(kssj,jssj,null,null));
+	   /* List<Integer> ids = recordService.getStuIds(kssj, jssj, null);
+	    Set<Student> stus= new HashSet<>();
+	    for (Integer id : ids) {
+			stus.add(studentService.selectByPrimaryKey(id));
+		}
+	    model.addAttribute("stus", stus);*/
 		return "record/list";
 	}
 	

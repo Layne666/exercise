@@ -37,11 +37,11 @@
                 <form:input path="tel" size="20" autocomplete="off"/>
                 <form:errors path="tel" cssClass="error"></form:errors>
             </p>
-            <p>
+            <%-- <p>
                 <label for="idcard">身份证：</label>
                 <form:input path="idcard" size="22" autocomplete="off"/>
                 <form:errors path="idcard" cssClass="error"></form:errors>
-            </p>
+            </p> --%>
             <p>
                 <label for="sykss">剩余课时数：</label>
                 <form:input path="sykss" size="18" autocomplete="off"/>

@@ -22,14 +22,14 @@
   <select id="getRecordPager" resultMap="BaseResultMap">
     select * from record 
     <where>
-    	<if test="kssj!=null">
-    		and date_format(ksrq,'%Y%m')&gt;=#{kssj}
+    	<if test="kssj!=null and kssj!=''">
+    		and ksrq &gt;=#{kssj}
     	</if>
-    	<if test="jssj!=null">
-    		and date_format(ksrq,'%Y%m')&lt;=#{jssj}
+    	<if test="jssj!=null and jssj!=''">
+    		and ksrq &lt;=#{jssj}
     	</if>
     	<if test="tid!=null">
-    		tid=#{tid}
+    		and tid=#{tid}
     	</if>
     </where>
     limit #{skip},#{size}
@@ -37,6 +37,50 @@
   
   <select id="getCount" resultType="int">
     select count(*) from record 
+    <where>
+    	<if test="kssj!=null and kssj!=''">
+    		and ksrq &gt;=#{kssj}
+    	</if>
+    	<if test="jssj!=null and jssj!=''">
+    		and ksrq &lt;=#{jssj}
+    	</if>
+    	<if test="tid!=null">
+    		and tid=#{tid}
+    	</if>
+    </where>
+  </select>
+  
+  <!-- <select id="getStuIds" resultType="int">
+    select distinct sid from record 
+    <where>
+    	<if test="kssj!=null and kssj!=''">
+    		and ksrq &gt;=#{kssj}
+    	</if>
+    	<if test="jssj!=null and jssj!=''">
+    		and ksrq &lt;=#{jssj}
+    	</if>
+    	<if test="tid!=null">
+    		and tid=#{tid}
+    	</if>
+    </where>
+  </select> -->
+  
+  <select id="getTotalKsze" resultType="double">
+    select COALESCE(sum(ksze),0) from record 
+    <where>
+    	<if test="kssj!=null and kssj!=''">
+    		and ksrq &gt;=#{kssj}
+    	</if>
+    	<if test="jssj!=null and jssj!=''">
+    		and ksrq &lt;=#{jssj}
+    	</if>
+    	<if test="tid!=null">
+    		and tid=#{tid}
+    	</if>
+    	<if test="id!=null">
+    		and tid=#{id,jdbcType=INTEGER}
+    	</if>
+    </where>
   </select>
   
    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -45,10 +89,10 @@
   </delete>
   
   <insert id="insert" parameterType="com.offcn.pojo.Record">
-    insert into record (id, kss, ksrq, 
+    insert into record (id, kss,ksze, ksrq, 
       tid,sid
       )
-    values (#{id,jdbcType=INTEGER}, #{kss,jdbcType=INTEGER}, #{ksrq,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{kss,jdbcType=INTEGER}, #{ksze,jdbcType=DOUBLE},#{ksrq,jdbcType=VARCHAR}, 
       #{teacher.id,jdbcType=INTEGER}, #{student.id,jdbcType=INTEGER}
       )
   </insert>

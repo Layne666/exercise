@@ -19,7 +19,7 @@
                 <th>手机号</th>
                 <th>性别</th>
                 <th>年龄</th>
-                <th>身份证</th>
+               <!--  <th>身份证</th> -->
                 <th>剩余课时数</th>
                <!--  <th>所在班级</th> -->
                 <th>操作</th>
@@ -31,7 +31,7 @@
                     <td>${entity.tel}</td>
                     <td>${entity.sex}</td>
                     <td>${entity.age}</td>
-                    <td>${entity.idcard}</td>
+                    <%-- <td>${entity.idcard}</td> --%>
                     <td>${entity.sykss}</td>
                    <%--  <td>${entity.classname}</td> --%>
                     <td>
@@ -49,7 +49,7 @@
         <link href="<c:url value="/scripts/pagination.css"/>"  type="text/css" rel="stylesheet" />
         <script type="text/javascript" src="<c:url value="/scripts/jquery.pagination.js"/>" ></script>
         <script type="text/javascript">
-	        $(".daka").click(function(){
+	       /*  $(".daka").click(function(){
 	        	if(confirm('确定打卡?')==false){
         			return false;
         		}else if($(this).parent().siblings().eq(6).text()<=0){
@@ -57,7 +57,7 @@
         			return false;
         		}
         		return true;
-	        });
+	        }); */
            //初始化分页组件
            var count=${count};
            var size=${size};

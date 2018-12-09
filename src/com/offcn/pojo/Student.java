@@ -20,9 +20,6 @@ public class Student {
     @Pattern(regexp="^1[3,4,5,6,7,8,9]\\d{9}$",message="手机号码格式不正确！")
     private String tel;
 
-    @Pattern(regexp="^[1-9]\\d{5}(18|19|([23]\\d))\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$",message="请输入正确的身份证！")
-    private String idcard;
-
     @NotNull(message="剩余课时数不可以为空！")
     private Integer sykss;
     
@@ -72,14 +69,6 @@ public class Student {
 
 	public void setTel(String tel) {
 		this.tel = tel;
-	}
-
-	public String getIdcard() {
-		return idcard;
-	}
-
-	public void setIdcard(String idcard) {
-		this.idcard = idcard;
 	}
 
 }

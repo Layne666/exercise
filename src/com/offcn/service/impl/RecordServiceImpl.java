@@ -27,9 +27,9 @@ public class RecordServiceImpl implements RecordService {
 	}
 
 	@Override
-	public int getCount() {
+	public int getCount(String kssj,String jssj,Integer tid) {
 		// TODO Auto-generated method stub
-		return recordMapper.getCount();
+		return recordMapper.getCount(kssj,jssj,tid);
 	}
 
 	@Override
@@ -44,7 +44,6 @@ public class RecordServiceImpl implements RecordService {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String ksrq = df.format(new Date());
 		record.setKsrq(ksrq);
-		record.setKss(1);
 		return recordMapper.insert(record);
 	}
 
@@ -63,4 +62,14 @@ public class RecordServiceImpl implements RecordService {
 		}
 		return rows;
 	}
+
+	@Override
+	public double getTotalKsze(String kssj,String jssj,Integer tid,Integer id) {
+		return recordMapper.getTotalKsze(kssj,jssj,tid,id);
+	}
+
+	/*@Override
+	public List<Integer> getStuIds(String kssj, String jssj, Integer tid) {
+		return recordMapper.getStuIds(kssj, jssj, tid);
+	}*/
 }
