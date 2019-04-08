@@ -7,25 +7,25 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <link href="<c:url value="/styles/main.css" />" type="text/css"
     rel="stylesheet" />
-<title>编辑教练</title>
+<title>个人中心</title>
 <base href="<c:url value="/" />" />
 </head>
 <body>
     <div class="main">
         <h2 class="title">
-            <span>编辑教练</span>
+            <span>个人中心</span>
         </h2>
-        <form:form action="tea/editSave" modelAttribute="entity">
+        <form:form action="tea/editselfSave" modelAttribute="entity">
             <fieldset>
-            <legend>教练</legend>
+            <legend>个人中心</legend>
             <form:hidden path="id" />
             <p>
-                <label for="name">教练姓名：</label>
+                <label for="name">姓名：</label>
                 <form:input path="name" size="20" autocomplete="off"/>
                 <form:errors path="name" cssClass="error"></form:errors>
             </p>
             <p>
-                <label for="sex">教练性别：</label>
+                <label for="sex">性别：</label>
                 <form:select path="sex">
                      <form:option value="男">男</form:option>
                      <form:option value="女">女</form:option>
@@ -33,12 +33,12 @@
                 <form:errors path="sex" cssClass="error"></form:errors>
             </p>
             <p>
-                <label for="age">教练年龄：</label>
+                <label for="age">年龄：</label>
                 <form:input path="age" size="20" autocomplete="off"/>
                 <form:errors path="age" cssClass="error"></form:errors>
             </p>
             <p>
-                <label for="tel">教练电话：</label>
+                <label for="tel">电话：</label>
                 <form:input path="tel" size="20" autocomplete="off"/>
                 <form:errors path="tel" cssClass="error"></form:errors>
             </p>
@@ -65,7 +65,6 @@
         <p style="color: red">${message}</p>
         <form:errors path="*"></form:errors>
         <p>
-            <a href="tea/list" class="abtn out">返回列表</a>
         </p>
     </div>
 </body>

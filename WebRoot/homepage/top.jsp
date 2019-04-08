@@ -19,10 +19,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+	<style type="text/css">
+		body {
+			background:url(images/logo.jpg) no-repeat;
+			background-size:100% 100%;
+		}
+	</style>
   </head>
   
-  <body background="images/bg.png">
+  <body>
   	<br/>
   	<div>
   		<table width="100%">
@@ -30,19 +35,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			    <td width="165px">
   					
   				</td>
-  				<td width="165px" style="text-align: center">
-  					<img alt="" src="images/ujy.png" width="160px" height="120px">
-  				</td>
-  				<td><font face="SimSun" color="#6495ED" size="26">通用教学管理系统</font></td>
   				<td align="right" valign="bottom" style="padding-right: 30px">
-  				   <font face="SimSun" color="#6495ED" style="text-decoration:none" size="5">
-  					  欢迎您! &nbsp; 2017-03-06</font> <a style="cursor:pointer">
-  				    <font color="red" size="5">
-  				          <a  href=""  onclick="gout(top.location.href='${pageContext.request.contextPath}/adminCtr/loginOut')"> 退出</a>
-  				    </font></a>
+  				   <font color="white" style="text-decoration:none" size="4">
+  					  欢迎您，${sessionScope.user.name}!<br/></font> 
+  				   <font size="4">
+  				        <a href="javascript:;" id="logout" style="text-decoration:none;">退出</a>
+  				   </font>
   				</td>
   			</tr>
   		</table>
   	</div>
   </body>
+  <script type="text/javascript" src="/styles/bootstrap/js/jquery-1.10.2.js"></script>
+  <script type="text/javascript">
+  	$(function(){
+  		$("#logout").click(function(){
+  			$.ajax({
+  				type:'post',
+				url:'/admin/logout',
+				success:function(data){
+					if(data){
+						parent.location.reload();
+					}else {
+						alert("退出失败！");
+					}
+				}
+  			});
+  		});
+  	});
+  </script>
 </html>

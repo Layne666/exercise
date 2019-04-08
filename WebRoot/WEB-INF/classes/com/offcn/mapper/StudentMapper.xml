@@ -9,8 +9,6 @@
     <result column="tel" jdbcType="VARCHAR" property="tel" />
     <result column="classid" jdbcType="INTEGER" property="classid" />
     <result column="usertype" jdbcType="INTEGER" property="usertype" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="loginname" jdbcType="VARCHAR" property="loginname" />
   </resultMap>
   
   <select id="getStudentPager" resultType="student">
@@ -27,18 +25,16 @@
   </delete>
   
   <insert id="insert" parameterType="com.offcn.pojo.Student">
-    insert into student (id, name, sex, 
-      address, tel, classid, 
-      usertype, password, loginname
+    insert into student (id, name, tel, 
+      sex, age, sykss
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{classid,jdbcType=INTEGER}, 
-      #{usertype,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, #{loginname,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=CHAR}, #{age,jdbcType=INTEGER}, #{sykss,jdbcType=INTEGER}
       )
   </insert>
   
   <sql id="Base_Column_List">
-    id, name, sex, address, tel, classid, usertype, password, loginname
+    id, name, sex, age, tel, sykss
   </sql>
   
    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -50,14 +46,23 @@
   
   <update id="updateByPrimaryKey" parameterType="com.offcn.pojo.Student">
     update student
-    set name = #{name,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      tel = #{tel,jdbcType=VARCHAR},
-      classid = #{classid,jdbcType=INTEGER},
-      usertype = #{usertype,jdbcType=INTEGER},
-      password = #{password,jdbcType=VARCHAR},
-      loginname = #{loginname,jdbcType=VARCHAR}
+    <set>
+    	<if test="name!=null">
+    		name = #{name,jdbcType=VARCHAR},
+    	</if>
+    	<if test="tel!=null">
+    		 tel = #{tel,jdbcType=VARCHAR},
+    	</if>
+    	<if test="sex!=null">
+    		 sex = #{sex,jdbcType=CHAR},
+    	</if>
+    	<if test="age!=null">
+    		age = #{age,jdbcType=INTEGER},
+    	</if>
+    	<if test="sykss!=null">
+    		sykss=#{sykss,jdbcType=INTEGER},
+    	</if>
+    </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   
