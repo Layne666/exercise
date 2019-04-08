@@ -16,8 +16,8 @@ public interface StudentMapper {
     Student selectByPrimaryKey(Integer id);
     int updateByPrimaryKeySelective(Student record);
     int updateByPrimaryKey(Student record);
-    List<Student> getStudentPager(@Param("skip") int skip,@Param("size") int size);
-    int getCount();
+    List<Student> getStudentPager(@Param("skip") int skip,@Param("size") int size, @Param("name") String name);
+    int getCount(@Param("name") String name);
     
     public List<StudentExt> getStuByCid(int id);
     public Student stulogin(Student student);

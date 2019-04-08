@@ -25,16 +25,16 @@ public class StudentServiceImpl implements StudentService {
 	 ScMapper  scMapper;
 	
 	@Override
-	public List<Student> getStudentPager(int pageNO, int size) {
+	public List<Student> getStudentPager(int pageNO, int size,String name) {
 		// TODO Auto-generated method stub
 		int skip=(pageNO-1)*size;
-		return studentMapper.getStudentPager(skip, size);
+		return studentMapper.getStudentPager(skip, size, name);
 	}
 
 	@Override
-	public int getCount() {
+	public int getCount(String name) {
 		// TODO Auto-generated method stub
-		return studentMapper.getCount();
+		return studentMapper.getCount(name);
 	}
 
 	@Override

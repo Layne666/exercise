@@ -23,7 +23,9 @@
                 <!-- <th>身份证</th> -->
                 <th>剩余课时数</th>
                <!--  <th>所在班级</th> -->
-                <th>操作</th>
+                <c:if test="${sessionScope.user.usertype==1}">
+                	<th>操作</th>
+                </c:if>
             </tr>
             <c:forEach var="entity" items="${slist}" varStatus="status">
                 <tr align="center">
@@ -36,17 +38,21 @@
                     <%-- <td>${entity.idcard}</td> --%>
                     <td>${entity.sykss}</td>
                    <%--  <td>${entity.classname}</td> --%>
+                   <c:if test="${sessionScope.user.usertype==1}">
                     <td>
                     <a href="<c:url value="/stu/"/>delete/${entity.id}?pageNO=${pageNO}" class="abtn" onclick="if(confirm('确定删除?')==false)return false;">删除</a>
                     <a href="edit/${entity.id}" class="abtn">编辑</a>
                     </td>
+                    </c:if>
                 </tr>
             </c:forEach>
         </table>
         <div id="pager"></div>
         <p>
+        	 <c:if test="${sessionScope.user.usertype==1}">
             <a href="add" class="abtn out">添加</a>
             <input type="submit"  value="批量删除" class="btn out" style="cursor:pointer;">
+            </c:if>
             <span style="float:right;">总共${count}数据</span>
         </p>
         <p style="color: red">${message}</p>

@@ -9,8 +9,8 @@ import com.offcn.pojo.Student;
 import com.offcn.pojo.StudentExt;
 
 public interface StudentService {
-	List<Student> getStudentPager(int pageNO, int size);
-	int getCount();
+	List<Student> getStudentPager(int pageNO, int size, String name);
+	int getCount(String name);
 	int deleteByPrimaryKey(Integer id);//删除
 	int multiDelete(int[] ids);
 	int insert(Student record);

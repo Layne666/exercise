@@ -11,6 +11,14 @@
 <body>
     <div class="main">
         <h2 class="title"><span>会员上课打卡</span></h2>
+        <form action="/stu/dakalist">
+        	<table>
+        		<tr>
+        			<td><input name="name" placeholder="请输入会员姓名..." autocomplete="off" value="${name}"/></td>
+        			<td><input type="submit"  value="查询" class="btn" style="cursor:pointer;"></td>
+        		</tr>
+        	</table>
+        </form>
         <form action="<c:url value="/stu/deletes?pageNO=${pageNO}"/>" method="post">
         <table border="1" width="100%" class="tab" >
             <tr>
@@ -74,7 +82,7 @@
            
            //回调方法
            function handlePaginationClick(new_page_index, pagination_container){
-               location.href="<c:url value="/stu/"/>dakalist?pageNO="+(new_page_index+1);
+               location.href="<c:url value="/stu/"/>dakalist?pageNO="+(new_page_index+1)+"&name="+${name};
            }
         </script>
     </form>

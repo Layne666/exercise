@@ -42,7 +42,9 @@
                 <th>课时总金额</th>
                 <th>教练名字</th>
                 <th>会员名字</th>
+                <c:if test="${sessionScope.user.usertype==1}">
                 <th>操作</th>
+                </c:if>
             </tr>
             <c:forEach var="entity" items="${slist}" varStatus="status">
                 <tr align="center">
@@ -53,15 +55,19 @@
                     <td>￥${entity.ksze}</td>
                     <td>${entity.teacher.name}</td>
                     <td>${entity.student.name}</td>
+                    <c:if test="${sessionScope.user.usertype==1}">
                     <td>
                     <a href="<c:url value="/record/"/>delete/${entity.id}?pageNO=${pageNO}" class="abtn" onclick="if(confirm('确定删除?')==false)return false;">删除</a>
                     </td>
+                    </c:if>
                 </tr>
             </c:forEach>
         </table>
         <div id="pager"></div>
         <p>
+        	<c:if test="${sessionScope.user.usertype==1}">
             <input type="submit"  value="批量删除" class="btn out" style="cursor:pointer;">
+            </c:if>
             <p style="float:right;">
             	<span>总共${count}数据，</span>
             	<span>课时总金额为<b style="font-size: 20px;color: red;">￥${totalKsze}</b></span>
@@ -117,7 +123,11 @@
            
            //回调方法
            function handlePaginationClick(new_page_index, pagination_container){
-               location.href="<c:url value="/record/"/>list?pageNO="+(new_page_index+1);
+        	   if(${sessionScope.user.usertype}==1){
+               		location.href="<c:url value="/record/"/>list?pageNO="+(new_page_index+1);
+        	   }else {
+               		location.href="<c:url value="/record/"/>tealist?pageNO="+(new_page_index+1);
+        	   }
            }
         </script>
     </form>

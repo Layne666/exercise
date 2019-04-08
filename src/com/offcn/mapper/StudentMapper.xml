@@ -12,11 +12,22 @@
   </resultMap>
   
   <select id="getStudentPager" resultType="student">
-    select * from student limit #{skip},#{size}
+    select * from student 
+    <where>
+    	<if test="name!=null and name!=''">
+    		name like concat('%',#{name},'%')
+    	</if>
+    </where>
+    limit #{skip},#{size}
   </select>
   
-  <select id="getCount" resultType="int">
+  <select id="getCount" resultType="int" parameterType="java.lang.String">
     select count(*) from student 
+    <where>
+    	<if test="name!=null and name!=''">
+    		name like concat('%',#{name},'%')
+    	</if>
+    </where>
   </select>
   
    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

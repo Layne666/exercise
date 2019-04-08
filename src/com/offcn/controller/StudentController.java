@@ -63,10 +63,10 @@ public class StudentController {
 	@RequestMapping("/list")
 	public String getlist(@RequestParam(required=false,defaultValue="1") int pageNO,Model model) {
 		int size=10;
-	    List<Student> slist=studentService.getStudentPager(pageNO, size);
+	    List<Student> slist=studentService.getStudentPager(pageNO, size, null);
 	    model.addAttribute("pageNO", pageNO);
 	    model.addAttribute("size", size);
-	    model.addAttribute("count", studentService.getCount());
+	    model.addAttribute("count", studentService.getCount(null));
 	    model.addAttribute("slist", slist);
 		return "student/list";
 	}
@@ -81,13 +81,14 @@ public class StudentController {
 		return "student/tealist";
 	}*/
 	@RequestMapping("/dakalist")
-	public String getdakalist(@RequestParam(required=false,defaultValue="1") int pageNO,Model model,HttpSession session) {
+	public String getdakalist(@RequestParam(required=false,defaultValue="1") int pageNO,Model model,HttpSession session,String name) {
 		int size=10;
-	    List<Student> slist=studentService.getStudentPager(pageNO, size);
+	    List<Student> slist=studentService.getStudentPager(pageNO, size, name);
 	    model.addAttribute("pageNO", pageNO);
 	    model.addAttribute("size", size);
-	    model.addAttribute("count", studentService.getCount());
+	    model.addAttribute("count", studentService.getCount(name));
 	    model.addAttribute("slist", slist);
+	    model.addAttribute("name", name);
 		return "student/dakalist";
 	}
 	//重定向一定要写绝对路径eg:redirect:/stu/list

@@ -46,9 +46,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </c:if>
                     
                     <c:if test="${user.usertype==2}">
-                    <li>
+                    <!-- <li>
                         <a href="stu/list" target="right"><i class="fa fa-desktop "></i>会员管理 </a>
-                    </li>
+                    </li> -->
                    <li>
                         <a href="stu/dakalist" target="right"><i class="fa fa-edit "></i>上课打卡 </a>
                     </li>
