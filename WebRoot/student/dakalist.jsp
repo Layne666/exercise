@@ -82,7 +82,7 @@
            
            //回调方法
            function handlePaginationClick(new_page_index, pagination_container){
-               location.href="<c:url value="/stu/"/>dakalist?pageNO="+(new_page_index+1)+"&name="+${name};
+        	   location.href="<c:url value="/stu/"/>dakalist?pageNO="+(new_page_index+1)+"&name=${name}";
            }
         </script>
     </form>
